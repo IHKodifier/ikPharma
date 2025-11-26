@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:uuid/uuid.dart';
 import '../dataconnect_generated/ik_pharma.dart';
 
 class AuthService {
@@ -98,15 +99,20 @@ class AuthService {
     required String uid,
   }) async {
     try {
+      const uuid = Uuid();
+      final businessId = uuid.v4();
+
       await IkPharmaConnector.instance
           .createBusinessAndAdmin(
+            businessId: businessId,
             businessName: businessName,
             userEmail: email,
             userFirstName: firstName,
             userLastName: lastName,
             authUid: uid,
+            today: DateTime.now(),
           )
-          .userPhone(phone)
+          // .userPhone(phone)
           .execute();
       log('Business and User created successfully');
     } catch (e) {

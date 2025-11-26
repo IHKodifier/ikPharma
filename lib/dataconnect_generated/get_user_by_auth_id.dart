@@ -24,13 +24,19 @@ class GetUserByAuthIdUser {
   final EnumValue<UserRole> role;
   final String firstName;
   final String lastName;
+  final String email;
+  final String? phone;
+  final bool isActive;
   GetUserByAuthIdUser.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']),
   businessId = nativeFromJson<String>(json['businessId']),
   role = userRoleDeserializer(json['role']),
   firstName = nativeFromJson<String>(json['firstName']),
-  lastName = nativeFromJson<String>(json['lastName']);
+  lastName = nativeFromJson<String>(json['lastName']),
+  email = nativeFromJson<String>(json['email']),
+  phone = json['phone'] == null ? null : nativeFromJson<String>(json['phone']),
+  isActive = nativeFromJson<bool>(json['isActive']);
   @override
   bool operator ==(Object other) {
     if(identical(this, other)) {
@@ -45,11 +51,14 @@ class GetUserByAuthIdUser {
     businessId == otherTyped.businessId && 
     role == otherTyped.role && 
     firstName == otherTyped.firstName && 
-    lastName == otherTyped.lastName;
+    lastName == otherTyped.lastName && 
+    email == otherTyped.email && 
+    phone == otherTyped.phone && 
+    isActive == otherTyped.isActive;
     
   }
   @override
-  int get hashCode => Object.hashAll([id.hashCode, businessId.hashCode, role.hashCode, firstName.hashCode, lastName.hashCode]);
+  int get hashCode => Object.hashAll([id.hashCode, businessId.hashCode, role.hashCode, firstName.hashCode, lastName.hashCode, email.hashCode, phone.hashCode, isActive.hashCode]);
   
 
   Map<String, dynamic> toJson() {
@@ -61,6 +70,11 @@ class GetUserByAuthIdUser {
     ;
     json['firstName'] = nativeToJson<String>(firstName);
     json['lastName'] = nativeToJson<String>(lastName);
+    json['email'] = nativeToJson<String>(email);
+    if (phone != null) {
+      json['phone'] = nativeToJson<String?>(phone);
+    }
+    json['isActive'] = nativeToJson<bool>(isActive);
     return json;
   }
 
@@ -70,6 +84,9 @@ class GetUserByAuthIdUser {
     required this.role,
     required this.firstName,
     required this.lastName,
+    required this.email,
+    this.phone,
+    required this.isActive,
   });
 }
 

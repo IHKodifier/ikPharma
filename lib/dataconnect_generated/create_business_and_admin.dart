@@ -1,19 +1,16 @@
 part of 'ik_pharma.dart';
 
 class CreateBusinessAndAdminVariablesBuilder {
+  String businessId;
   String businessName;
   String userEmail;
   String userFirstName;
   String userLastName;
-  Optional<String> _userPhone = Optional.optional(nativeFromJson, nativeToJson);
   String authUid;
+  DateTime today;
 
-  final FirebaseDataConnect _dataConnect;  CreateBusinessAndAdminVariablesBuilder userPhone(String? t) {
-   _userPhone.value = t;
-   return this;
-  }
-
-  CreateBusinessAndAdminVariablesBuilder(this._dataConnect, {required  this.businessName,required  this.userEmail,required  this.userFirstName,required  this.userLastName,required  this.authUid,});
+  final FirebaseDataConnect _dataConnect;
+  CreateBusinessAndAdminVariablesBuilder(this._dataConnect, {required  this.businessId,required  this.businessName,required  this.userEmail,required  this.userFirstName,required  this.userLastName,required  this.authUid,required  this.today,});
   Deserializer<CreateBusinessAndAdminData> dataDeserializer = (dynamic json)  => CreateBusinessAndAdminData.fromJson(jsonDecode(json));
   Serializer<CreateBusinessAndAdminVariables> varsSerializer = (CreateBusinessAndAdminVariables vars) => jsonEncode(vars.toJson());
   Future<OperationResult<CreateBusinessAndAdminData, CreateBusinessAndAdminVariables>> execute() {
@@ -21,15 +18,15 @@ class CreateBusinessAndAdminVariablesBuilder {
   }
 
   MutationRef<CreateBusinessAndAdminData, CreateBusinessAndAdminVariables> ref() {
-    CreateBusinessAndAdminVariables vars= CreateBusinessAndAdminVariables(businessName: businessName,userEmail: userEmail,userFirstName: userFirstName,userLastName: userLastName,userPhone: _userPhone,authUid: authUid,);
+    CreateBusinessAndAdminVariables vars= CreateBusinessAndAdminVariables(businessId: businessId,businessName: businessName,userEmail: userEmail,userFirstName: userFirstName,userLastName: userLastName,authUid: authUid,today: today,);
     return _dataConnect.mutation("CreateBusinessAndAdmin", dataDeserializer, varsSerializer, vars);
   }
 }
 
 @immutable
-class CreateBusinessAndAdminBusiness {
+class CreateBusinessAndAdminBusinessInsert {
   final String id;
-  CreateBusinessAndAdminBusiness.fromJson(dynamic json):
+  CreateBusinessAndAdminBusinessInsert.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']);
   @override
@@ -41,7 +38,7 @@ class CreateBusinessAndAdminBusiness {
       return false;
     }
 
-    final CreateBusinessAndAdminBusiness otherTyped = other as CreateBusinessAndAdminBusiness;
+    final CreateBusinessAndAdminBusinessInsert otherTyped = other as CreateBusinessAndAdminBusinessInsert;
     return id == otherTyped.id;
     
   }
@@ -55,15 +52,15 @@ class CreateBusinessAndAdminBusiness {
     return json;
   }
 
-  CreateBusinessAndAdminBusiness({
+  CreateBusinessAndAdminBusinessInsert({
     required this.id,
   });
 }
 
 @immutable
-class CreateBusinessAndAdminUser {
+class CreateBusinessAndAdminUserInsert {
   final String id;
-  CreateBusinessAndAdminUser.fromJson(dynamic json):
+  CreateBusinessAndAdminUserInsert.fromJson(dynamic json):
   
   id = nativeFromJson<String>(json['id']);
   @override
@@ -75,7 +72,7 @@ class CreateBusinessAndAdminUser {
       return false;
     }
 
-    final CreateBusinessAndAdminUser otherTyped = other as CreateBusinessAndAdminUser;
+    final CreateBusinessAndAdminUserInsert otherTyped = other as CreateBusinessAndAdminUserInsert;
     return id == otherTyped.id;
     
   }
@@ -89,19 +86,19 @@ class CreateBusinessAndAdminUser {
     return json;
   }
 
-  CreateBusinessAndAdminUser({
+  CreateBusinessAndAdminUserInsert({
     required this.id,
   });
 }
 
 @immutable
 class CreateBusinessAndAdminData {
-  final CreateBusinessAndAdminBusiness business;
-  final CreateBusinessAndAdminUser user;
+  final CreateBusinessAndAdminBusinessInsert business_insert;
+  final CreateBusinessAndAdminUserInsert user_insert;
   CreateBusinessAndAdminData.fromJson(dynamic json):
   
-  business = CreateBusinessAndAdminBusiness.fromJson(json['business']),
-  user = CreateBusinessAndAdminUser.fromJson(json['user']);
+  business_insert = CreateBusinessAndAdminBusinessInsert.fromJson(json['business_insert']),
+  user_insert = CreateBusinessAndAdminUserInsert.fromJson(json['user_insert']);
   @override
   bool operator ==(Object other) {
     if(identical(this, other)) {
@@ -112,54 +109,46 @@ class CreateBusinessAndAdminData {
     }
 
     final CreateBusinessAndAdminData otherTyped = other as CreateBusinessAndAdminData;
-    return business == otherTyped.business && 
-    user == otherTyped.user;
+    return business_insert == otherTyped.business_insert && 
+    user_insert == otherTyped.user_insert;
     
   }
   @override
-  int get hashCode => Object.hashAll([business.hashCode, user.hashCode]);
+  int get hashCode => Object.hashAll([business_insert.hashCode, user_insert.hashCode]);
   
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
-    json['business'] = business.toJson();
-    json['user'] = user.toJson();
+    json['business_insert'] = business_insert.toJson();
+    json['user_insert'] = user_insert.toJson();
     return json;
   }
 
   CreateBusinessAndAdminData({
-    required this.business,
-    required this.user,
+    required this.business_insert,
+    required this.user_insert,
   });
 }
 
 @immutable
 class CreateBusinessAndAdminVariables {
+  final String businessId;
   final String businessName;
   final String userEmail;
   final String userFirstName;
   final String userLastName;
-  late final Optional<String>userPhone;
   final String authUid;
+  final DateTime today;
   @Deprecated('fromJson is deprecated for Variable classes as they are no longer required for deserialization.')
   CreateBusinessAndAdminVariables.fromJson(Map<String, dynamic> json):
   
+  businessId = nativeFromJson<String>(json['businessId']),
   businessName = nativeFromJson<String>(json['businessName']),
   userEmail = nativeFromJson<String>(json['userEmail']),
   userFirstName = nativeFromJson<String>(json['userFirstName']),
   userLastName = nativeFromJson<String>(json['userLastName']),
-  authUid = nativeFromJson<String>(json['authUid']) {
-  
-  
-  
-  
-  
-  
-    userPhone = Optional.optional(nativeFromJson, nativeToJson);
-    userPhone.value = json['userPhone'] == null ? null : nativeFromJson<String>(json['userPhone']);
-  
-  
-  }
+  authUid = nativeFromJson<String>(json['authUid']),
+  today = nativeFromJson<DateTime>(json['today']);
   @override
   bool operator ==(Object other) {
     if(identical(this, other)) {
@@ -170,38 +159,39 @@ class CreateBusinessAndAdminVariables {
     }
 
     final CreateBusinessAndAdminVariables otherTyped = other as CreateBusinessAndAdminVariables;
-    return businessName == otherTyped.businessName && 
+    return businessId == otherTyped.businessId && 
+    businessName == otherTyped.businessName && 
     userEmail == otherTyped.userEmail && 
     userFirstName == otherTyped.userFirstName && 
     userLastName == otherTyped.userLastName && 
-    userPhone == otherTyped.userPhone && 
-    authUid == otherTyped.authUid;
+    authUid == otherTyped.authUid && 
+    today == otherTyped.today;
     
   }
   @override
-  int get hashCode => Object.hashAll([businessName.hashCode, userEmail.hashCode, userFirstName.hashCode, userLastName.hashCode, userPhone.hashCode, authUid.hashCode]);
+  int get hashCode => Object.hashAll([businessId.hashCode, businessName.hashCode, userEmail.hashCode, userFirstName.hashCode, userLastName.hashCode, authUid.hashCode, today.hashCode]);
   
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
+    json['businessId'] = nativeToJson<String>(businessId);
     json['businessName'] = nativeToJson<String>(businessName);
     json['userEmail'] = nativeToJson<String>(userEmail);
     json['userFirstName'] = nativeToJson<String>(userFirstName);
     json['userLastName'] = nativeToJson<String>(userLastName);
-    if(userPhone.state == OptionalState.set) {
-      json['userPhone'] = userPhone.toJson();
-    }
     json['authUid'] = nativeToJson<String>(authUid);
+    json['today'] = nativeToJson<DateTime>(today);
     return json;
   }
 
   CreateBusinessAndAdminVariables({
+    required this.businessId,
     required this.businessName,
     required this.userEmail,
     required this.userFirstName,
     required this.userLastName,
-    required this.userPhone,
     required this.authUid,
+    required this.today,
   });
 }
 

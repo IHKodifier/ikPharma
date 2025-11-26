@@ -1,38 +1,24 @@
 mutation CreateBusinessAndAdmin(
+  $businessId: UUID!
   $businessName: String!
   $userEmail: String!
   $userFirstName: String!
   $userLastName: String!
-  $userPhone: String
   $authUid: String!
-) @transaction {
-  # 1. Create Business
-  business: business_insert(data: {
+  $today: Date!
+) @auth(level: USER) @transaction {
+  business_insert(data: {
+    id: $businessId
     name: $businessName
     tier: TRIAL
-    subscriptionStartDate: { today: true }
-    isActive: true
+    subscriptionStartDate: $today
   })
-
-  # 2. Create Admin User linked to the Business
-  user: user_insert(data: {
+  user_insert(data: {
     id: $authUid
-    businessId: { from: "business", path: "id" } # Link to the business created above
+    businessId: $businessId
     email: $userEmail
     firstName: $userFirstName
     lastName: $userLastName
-    phone: $userPhone
     role: BUSINESS_ADMIN
-    isActive: true
   })
-}
-
-query GetUserByAuthId($id: String!) {
-  user(id: $id) {
-    id
-    businessId
-    role
-    firstName
-    lastName
-  }
 }
