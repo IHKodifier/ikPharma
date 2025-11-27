@@ -789,46 +789,16 @@ ref.execute();
 ### CreateAddress
 #### Required Arguments
 ```dart
-String line1 = ...;
-String city = ...;
-String state = ...;
-String postalCode = ...;
-String country = ...;
-IkPharmaConnector.instance.createAddress(
-  line1: line1,
-  city: city,
-  state: state,
-  postalCode: postalCode,
-  country: country,
+String businessId = ...;
+IkPharmaConnector.instance.listLocationsByBusiness(
+  businessId: businessId,
 ).execute();
 ```
 
-#### Optional Arguments
-We return a builder for each query. For CreateAddress, we created `CreateAddressBuilder`. For queries and mutations with optional parameters, we return a builder class.
-The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
-```dart
-class CreateAddressVariablesBuilder {
-  ...
-   CreateAddressVariablesBuilder line2(String? t) {
-   _line2.value = t;
-   return this;
-  }
 
-  ...
-}
-IkPharmaConnector.instance.createAddress(
-  line1: line1,
-  city: city,
-  state: state,
-  postalCode: postalCode,
-  country: country,
-)
-.line2(line2)
-.execute();
-```
 
 #### Return Type
-`execute()` returns a `OperationResult<CreateAddressData, CreateAddressVariables>`
+`execute()` returns a `QueryResult<ListLocationsByBusinessData, ListLocationsByBusinessVariables>`
 ```dart
 /// Result of an Operation Request (query/mutation).
 class OperationResult<Data, Variables> {
@@ -838,14 +808,15 @@ class OperationResult<Data, Variables> {
   FirebaseDataConnect dataConnect;
 }
 
-final result = await IkPharmaConnector.instance.createAddress(
-  line1: line1,
-  city: city,
-  state: state,
-  postalCode: postalCode,
-  country: country,
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listLocationsByBusiness(
+  businessId: businessId,
 );
-CreateAddressData data = result.data;
+ListLocationsByBusinessData data = result.data;
 final ref = result.ref;
 ```
 
@@ -853,18 +824,585 @@ final ref = result.ref;
 Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
 An example of how to use the `Ref` object is shown below:
 ```dart
-String line1 = ...;
-String city = ...;
-String state = ...;
-String postalCode = ...;
-String country = ...;
+String businessId = ...;
 
-final ref = IkPharmaConnector.instance.createAddress(
-  line1: line1,
-  city: city,
-  state: state,
-  postalCode: postalCode,
-  country: country,
+final ref = IkPharmaConnector.instance.listLocationsByBusiness(
+  businessId: businessId,
+).ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### listAllProducts
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.listAllProducts().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<listAllProductsData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listAllProducts();
+listAllProductsData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.listAllProducts().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListAllBusinesses
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.listAllBusinesses().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListAllBusinessesData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listAllBusinesses();
+ListAllBusinessesData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.listAllBusinesses().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListAllUsers
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.listAllUsers().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListAllUsersData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listAllUsers();
+ListAllUsersData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.listAllUsers().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListPricingByLocation
+#### Required Arguments
+```dart
+String businessId = ...;
+IkPharmaConnector.instance.listPricingByLocation(
+  businessId: businessId,
+).execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListPricingByLocationData, ListPricingByLocationVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listPricingByLocation(
+  businessId: businessId,
+);
+ListPricingByLocationData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String businessId = ...;
+
+final ref = IkPharmaConnector.instance.listPricingByLocation(
+  businessId: businessId,
+).ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### VerifyProduct
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.verifyProduct().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<VerifyProductData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.verifyProduct();
+VerifyProductData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.verifyProduct().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListAllCustomers
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.listAllCustomers().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListAllCustomersData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listAllCustomers();
+ListAllCustomersData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.listAllCustomers().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListAllLocations
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.listAllLocations().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListAllLocationsData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listAllLocations();
+ListAllLocationsData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.listAllLocations().ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### ListInventoryByLocation
+#### Required Arguments
+```dart
+String locationId = ...;
+IkPharmaConnector.instance.listInventoryByLocation(
+  locationId: locationId,
+).execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<ListInventoryByLocationData, ListInventoryByLocationVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.listInventoryByLocation(
+  locationId: locationId,
+);
+ListInventoryByLocationData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String locationId = ...;
+
+final ref = IkPharmaConnector.instance.listInventoryByLocation(
+  locationId: locationId,
+).ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### GetBusinessById
+#### Required Arguments
+```dart
+String id = ...;
+IkPharmaConnector.instance.getBusinessById(
+  id: id,
+).execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<GetBusinessByIdData, GetBusinessByIdVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.getBusinessById(
+  id: id,
+);
+GetBusinessByIdData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String id = ...;
+
+final ref = IkPharmaConnector.instance.getBusinessById(
+  id: id,
+).ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+
+### GetUserByAuthId
+#### Required Arguments
+```dart
+String id = ...;
+IkPharmaConnector.instance.getUserByAuthId(
+  id: id,
+).execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `QueryResult<GetUserByAuthIdData, GetUserByAuthIdVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+/// Result of a query request. Created to hold extra variables in the future.
+class QueryResult<Data, Variables> extends OperationResult<Data, Variables> {
+  QueryResult(super.dataConnect, super.data, super.ref);
+}
+
+final result = await IkPharmaConnector.instance.getUserByAuthId(
+  id: id,
+);
+GetUserByAuthIdData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String id = ...;
+
+final ref = IkPharmaConnector.instance.getUserByAuthId(
+  id: id,
+).ref();
+ref.execute();
+
+ref.subscribe(...);
+```
+
+## Mutations
+
+### DeleteAllBusinesses
+#### Required Arguments
+```dart
+// No required arguments
+IkPharmaConnector.instance.deleteAllBusinesses().execute();
+```
+
+
+
+#### Return Type
+`execute()` returns a `OperationResult<DeleteAllBusinessesData, void>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+final result = await IkPharmaConnector.instance.deleteAllBusinesses();
+DeleteAllBusinessesData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+final ref = IkPharmaConnector.instance.deleteAllBusinesses().ref();
+ref.execute();
+```
+
+
+### CreateInventoryLevel
+#### Required Arguments
+```dart
+String productId = ...;
+String locationId = ...;
+String businessId = ...;
+int quantityOnHand = ...;
+int quantityAvailable = ...;
+double averageCost = ...;
+double totalValue = ...;
+IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
+  businessId: businessId,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
+).execute();
+```
+
+#### Optional Arguments
+We return a builder for each query. For CreateInventoryLevel, we created `CreateInventoryLevelBuilder`. For queries and mutations with optional parameters, we return a builder class.
+The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
+```dart
+class CreateInventoryLevelVariablesBuilder {
+  ...
+   CreateInventoryLevelVariablesBuilder batchId(String? t) {
+   _batchId.value = t;
+   return this;
+  }
+
+  ...
+}
+IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
+  businessId: businessId,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
+)
+.batchId(batchId)
+.execute();
+```
+
+#### Return Type
+`execute()` returns a `OperationResult<CreateInventoryLevelData, CreateInventoryLevelVariables>`
+```dart
+/// Result of an Operation Request (query/mutation).
+class OperationResult<Data, Variables> {
+  OperationResult(this.dataConnect, this.data, this.ref);
+  Data data;
+  OperationRef<Data, Variables> ref;
+  FirebaseDataConnect dataConnect;
+}
+
+final result = await IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
+  businessId: businessId,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
+);
+CreateInventoryLevelData data = result.data;
+final ref = result.ref;
+```
+
+#### Getting the Ref
+Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
+An example of how to use the `Ref` object is shown below:
+```dart
+String productId = ...;
+String locationId = ...;
+String businessId = ...;
+int quantityOnHand = ...;
+int quantityAvailable = ...;
+double averageCost = ...;
+double totalValue = ...;
+
+final ref = IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
+  businessId: businessId,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
 ).ref();
 ref.execute();
 ```
@@ -984,7 +1522,29 @@ ref.execute();
 IkPharmaConnector.instance.deleteAllUsers().execute();
 ```
 
+#### Optional Arguments
+We return a builder for each query. For CreateAddress, we created `CreateAddressBuilder`. For queries and mutations with optional parameters, we return a builder class.
+The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
+```dart
+class CreateAddressVariablesBuilder {
+  ...
+   CreateAddressVariablesBuilder line2(String? t) {
+   _line2.value = t;
+   return this;
+  }
 
+  ...
+}
+IkPharmaConnector.instance.createAddress(
+  line1: line1,
+  city: city,
+  state: state,
+  postalCode: postalCode,
+  country: country,
+)
+.line2(line2)
+.execute();
+```
 
 #### Return Type
 `execute()` returns a `OperationResult<DeleteAllUsersData, void>`
@@ -1503,107 +2063,40 @@ ref.execute();
 ```
 
 
-### CreateProduct
+### CreateTherapeuticClass
 #### Required Arguments
 ```dart
-String businessId = ...;
-String genericName = ...;
-String manufacturerId = ...;
-String internalSKU = ...;
-DosageForm dosageForm = ...;
-String strength = ...;
-String unit = ...;
-RouteOfAdministration routeOfAdministration = ...;
-DrugSchedule drugSchedule = ...;
-bool requiresPrescription = ...;
-String therapeuticClassId = ...;
-int packageSize = ...;
-PackageUnit packageUnit = ...;
-String primarySupplierId = ...;
-int leadTimeDays = ...;
-int reorderPoint = ...;
-int reorderQuantity = ...;
-int minimumStockLevel = ...;
-ProductCategory category = ...;
-String createdById = ...;
-String updatedById = ...;
-IkPharmaConnector.instance.createProduct(
-  businessId: businessId,
-  genericName: genericName,
-  manufacturerId: manufacturerId,
-  internalSKU: internalSKU,
-  dosageForm: dosageForm,
-  strength: strength,
-  unit: unit,
-  routeOfAdministration: routeOfAdministration,
-  drugSchedule: drugSchedule,
-  requiresPrescription: requiresPrescription,
-  therapeuticClassId: therapeuticClassId,
-  packageSize: packageSize,
-  packageUnit: packageUnit,
-  primarySupplierId: primarySupplierId,
-  leadTimeDays: leadTimeDays,
-  reorderPoint: reorderPoint,
-  reorderQuantity: reorderQuantity,
-  minimumStockLevel: minimumStockLevel,
-  category: category,
-  createdById: createdById,
-  updatedById: updatedById,
+String code = ...;
+String name = ...;
+IkPharmaConnector.instance.createTherapeuticClass(
+  code: code,
+  name: name,
 ).execute();
 ```
 
 #### Optional Arguments
-We return a builder for each query. For CreateProduct, we created `CreateProductBuilder`. For queries and mutations with optional parameters, we return a builder class.
+We return a builder for each query. For CreateTherapeuticClass, we created `CreateTherapeuticClassBuilder`. For queries and mutations with optional parameters, we return a builder class.
 The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
 ```dart
-class CreateProductVariablesBuilder {
+class CreateTherapeuticClassVariablesBuilder {
   ...
-   CreateProductVariablesBuilder brandName(String? t) {
-   _brandName.value = t;
-   return this;
-  }
-  CreateProductVariablesBuilder nationalDrugCode(String? t) {
-   _nationalDrugCode.value = t;
-   return this;
-  }
-  CreateProductVariablesBuilder barcode(String? t) {
-   _barcode.value = t;
+   CreateTherapeuticClassVariablesBuilder description(String? t) {
+   _description.value = t;
    return this;
   }
 
   ...
 }
-IkPharmaConnector.instance.createProduct(
-  businessId: businessId,
-  genericName: genericName,
-  manufacturerId: manufacturerId,
-  internalSKU: internalSKU,
-  dosageForm: dosageForm,
-  strength: strength,
-  unit: unit,
-  routeOfAdministration: routeOfAdministration,
-  drugSchedule: drugSchedule,
-  requiresPrescription: requiresPrescription,
-  therapeuticClassId: therapeuticClassId,
-  packageSize: packageSize,
-  packageUnit: packageUnit,
-  primarySupplierId: primarySupplierId,
-  leadTimeDays: leadTimeDays,
-  reorderPoint: reorderPoint,
-  reorderQuantity: reorderQuantity,
-  minimumStockLevel: minimumStockLevel,
-  category: category,
-  createdById: createdById,
-  updatedById: updatedById,
+IkPharmaConnector.instance.createTherapeuticClass(
+  code: code,
+  name: name,
 )
-.brandName(brandName)
-.nationalDrugCode(nationalDrugCode)
-.barcode(barcode)
+.description(description)
 .execute();
 ```
 
 #### Return Type
-`execute()` returns a `OperationResult<CreateProductData, CreateProductVariables>`
+`execute()` returns a `OperationResult<CreateTherapeuticClassData, CreateTherapeuticClassVariables>`
 ```dart
 /// Result of an Operation Request (query/mutation).
 class OperationResult<Data, Variables> {
@@ -1613,30 +2106,11 @@ class OperationResult<Data, Variables> {
   FirebaseDataConnect dataConnect;
 }
 
-final result = await IkPharmaConnector.instance.createProduct(
-  businessId: businessId,
-  genericName: genericName,
-  manufacturerId: manufacturerId,
-  internalSKU: internalSKU,
-  dosageForm: dosageForm,
-  strength: strength,
-  unit: unit,
-  routeOfAdministration: routeOfAdministration,
-  drugSchedule: drugSchedule,
-  requiresPrescription: requiresPrescription,
-  therapeuticClassId: therapeuticClassId,
-  packageSize: packageSize,
-  packageUnit: packageUnit,
-  primarySupplierId: primarySupplierId,
-  leadTimeDays: leadTimeDays,
-  reorderPoint: reorderPoint,
-  reorderQuantity: reorderQuantity,
-  minimumStockLevel: minimumStockLevel,
-  category: category,
-  createdById: createdById,
-  updatedById: updatedById,
+final result = await IkPharmaConnector.instance.createTherapeuticClass(
+  code: code,
+  name: name,
 );
-CreateProductData data = result.data;
+CreateTherapeuticClassData data = result.data;
 final ref = result.ref;
 ```
 
@@ -1644,50 +2118,12 @@ final ref = result.ref;
 Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
 An example of how to use the `Ref` object is shown below:
 ```dart
-String businessId = ...;
-String genericName = ...;
-String manufacturerId = ...;
-String internalSKU = ...;
-DosageForm dosageForm = ...;
-String strength = ...;
-String unit = ...;
-RouteOfAdministration routeOfAdministration = ...;
-DrugSchedule drugSchedule = ...;
-bool requiresPrescription = ...;
-String therapeuticClassId = ...;
-int packageSize = ...;
-PackageUnit packageUnit = ...;
-String primarySupplierId = ...;
-int leadTimeDays = ...;
-int reorderPoint = ...;
-int reorderQuantity = ...;
-int minimumStockLevel = ...;
-ProductCategory category = ...;
-String createdById = ...;
-String updatedById = ...;
+String code = ...;
+String name = ...;
 
-final ref = IkPharmaConnector.instance.createProduct(
-  businessId: businessId,
-  genericName: genericName,
-  manufacturerId: manufacturerId,
-  internalSKU: internalSKU,
-  dosageForm: dosageForm,
-  strength: strength,
-  unit: unit,
-  routeOfAdministration: routeOfAdministration,
-  drugSchedule: drugSchedule,
-  requiresPrescription: requiresPrescription,
-  therapeuticClassId: therapeuticClassId,
-  packageSize: packageSize,
-  packageUnit: packageUnit,
-  primarySupplierId: primarySupplierId,
-  leadTimeDays: leadTimeDays,
-  reorderPoint: reorderPoint,
-  reorderQuantity: reorderQuantity,
-  minimumStockLevel: minimumStockLevel,
-  category: category,
-  createdById: createdById,
-  updatedById: updatedById,
+final ref = IkPharmaConnector.instance.createTherapeuticClass(
+  code: code,
+  name: name,
 ).ref();
 ref.execute();
 ```

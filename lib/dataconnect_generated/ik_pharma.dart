@@ -1014,13 +1014,73 @@ class IkPharmaConnector {
   }
   
   
-  ListProductsByBusinessVariablesBuilder listProductsByBusiness ({required String businessId, }) {
-    return ListProductsByBusinessVariablesBuilder(dataConnect, businessId: businessId,);
+  CreateSupplierVariablesBuilder createSupplier ({required String businessId, required String name, required SupplierType type, required String paymentTerms, required SupplierTier tier, }) {
+    return CreateSupplierVariablesBuilder(dataConnect, businessId: businessId,name: name,type: type,paymentTerms: paymentTerms,tier: tier,);
   }
   
   
-  ListAllSuppliersVariablesBuilder listAllSuppliers () {
-    return ListAllSuppliersVariablesBuilder(dataConnect, );
+  CreateLocationVariablesBuilder createLocation ({required String businessId, required String name, required String code, required LocationType type, }) {
+    return CreateLocationVariablesBuilder(dataConnect, businessId: businessId,name: name,code: code,type: type,);
+  }
+  
+  
+  CreateGoodsReceiptVariablesBuilder createGoodsReceipt ({required String purchaseOrderId, required String businessId, required String receiptNumber, required GoodsReceiptStatus status, required String inspectedById, }) {
+    return CreateGoodsReceiptVariablesBuilder(dataConnect, purchaseOrderId: purchaseOrderId,businessId: businessId,receiptNumber: receiptNumber,status: status,inspectedById: inspectedById,);
+  }
+  
+  
+  ListPricingByLocationVariablesBuilder listPricingByLocation ({required String businessId, }) {
+    return ListPricingByLocationVariablesBuilder(dataConnect, businessId: businessId,);
+  }
+  
+  
+  VerifyProductVariablesBuilder verifyProduct () {
+    return VerifyProductVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListAllCustomersVariablesBuilder listAllCustomers () {
+    return ListAllCustomersVariablesBuilder(dataConnect, );
+  }
+  
+  
+  CreatePurchaseOrderVariablesBuilder createPurchaseOrder ({required String businessId, required String supplierId, required String orderNumber, required double totalAmount, required double subtotal, required double taxAmount, required PurchaseOrderStatus status, required String createdById, }) {
+    return CreatePurchaseOrderVariablesBuilder(dataConnect, businessId: businessId,supplierId: supplierId,orderNumber: orderNumber,totalAmount: totalAmount,subtotal: subtotal,taxAmount: taxAmount,status: status,createdById: createdById,);
+  }
+  
+  
+  CreateBusinessAndAdminVariablesBuilder createBusinessAndAdmin ({required String businessId, required String businessName, required String userEmail, required String userFirstName, required String userLastName, required String authUid, required DateTime today, }) {
+    return CreateBusinessAndAdminVariablesBuilder(dataConnect, businessId: businessId,businessName: businessName,userEmail: userEmail,userFirstName: userFirstName,userLastName: userLastName,authUid: authUid,today: today,);
+  }
+  
+  
+  CreateAddressVariablesBuilder createAddress ({required String line1, required String city, required String state, required String postalCode, required String country, }) {
+    return CreateAddressVariablesBuilder(dataConnect, line1: line1,city: city,state: state,postalCode: postalCode,country: country,);
+  }
+  
+  
+  CreateManufacturerVariablesBuilder createManufacturer ({required String name, required String country, }) {
+    return CreateManufacturerVariablesBuilder(dataConnect, name: name,country: country,);
+  }
+  
+  
+  CreateProductVariablesBuilder createProduct ({required String businessId, required String genericName, required String manufacturerId, required String internalSKU, required DosageForm dosageForm, required String strength, required String unit, required RouteOfAdministration routeOfAdministration, required DrugSchedule drugSchedule, required bool requiresPrescription, required String therapeuticClassId, required int packageSize, required PackageUnit packageUnit, required String primarySupplierId, required int leadTimeDays, required int reorderPoint, required int reorderQuantity, required int minimumStockLevel, required ProductCategory category, required String createdById, required String updatedById, }) {
+    return CreateProductVariablesBuilder(dataConnect, businessId: businessId,genericName: genericName,manufacturerId: manufacturerId,internalSKU: internalSKU,dosageForm: dosageForm,strength: strength,unit: unit,routeOfAdministration: routeOfAdministration,drugSchedule: drugSchedule,requiresPrescription: requiresPrescription,therapeuticClassId: therapeuticClassId,packageSize: packageSize,packageUnit: packageUnit,primarySupplierId: primarySupplierId,leadTimeDays: leadTimeDays,reorderPoint: reorderPoint,reorderQuantity: reorderQuantity,minimumStockLevel: minimumStockLevel,category: category,createdById: createdById,updatedById: updatedById,);
+  }
+  
+  
+  CreateProductBatchVariablesBuilder createProductBatch ({required String productId, required String businessId, required String batchNumber, required String lotNumber, required DateTime manufacturingDate, required DateTime expiryDate, required String supplierId, required String goodsReceiptId, required DateTime receivedDate, required double unitCost, required double totalCost, required int totalQuantity, required int quantityRemaining, required String locationId, required String createdById, required String updatedById, }) {
+    return CreateProductBatchVariablesBuilder(dataConnect, productId: productId,businessId: businessId,batchNumber: batchNumber,lotNumber: lotNumber,manufacturingDate: manufacturingDate,expiryDate: expiryDate,supplierId: supplierId,goodsReceiptId: goodsReceiptId,receivedDate: receivedDate,unitCost: unitCost,totalCost: totalCost,totalQuantity: totalQuantity,quantityRemaining: quantityRemaining,locationId: locationId,createdById: createdById,updatedById: updatedById,);
+  }
+  
+  
+  ListAllLocationsVariablesBuilder listAllLocations () {
+    return ListAllLocationsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListInventoryByLocationVariablesBuilder listInventoryByLocation ({required String locationId, }) {
+    return ListInventoryByLocationVariablesBuilder(dataConnect, locationId: locationId,);
   }
   
   
