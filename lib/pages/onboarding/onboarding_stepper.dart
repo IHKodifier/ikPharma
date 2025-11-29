@@ -59,9 +59,7 @@ class _OnboardingStepperState extends ConsumerState<OnboardingStepper> {
       if (mounted) {
         // Navigate to Dashboard
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (_) => const AppHomePage(title: 'ik-Pharma Dashboard'),
-          ),
+          MaterialPageRoute(builder: (_) => const AppHomePage()),
         );
       }
     } catch (e) {
@@ -79,7 +77,8 @@ class _OnboardingStepperState extends ConsumerState<OnboardingStepper> {
     if (_currentStep == 0) {
       if (_businessNameController.text.isEmpty) return; // Basic validation
     } else if (_currentStep == 1) {
-      if (_firstNameController.text.isEmpty || _lastNameController.text.isEmpty) {
+      if (_firstNameController.text.isEmpty ||
+          _lastNameController.text.isEmpty) {
         return;
       }
     }

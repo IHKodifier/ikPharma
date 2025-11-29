@@ -63,7 +63,7 @@ class AuthWrapper extends ConsumerWidget {
                             .read(businessProvider.notifier)
                             .setBusiness(business);
                       });
-                      return const AppHomePage(title: 'ik-Pharma Dashboard');
+                      return const AppHomePage();
                     }
                     return const Scaffold(
                       body: Center(child: Text('Business not found')),

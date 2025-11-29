@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'widgets/auth_wrapper.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'providers/theme_provider.dart';
 
 class MyApp extends ConsumerWidget {
@@ -18,6 +19,7 @@ class MyApp extends ConsumerWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF004040)),
+        textTheme: GoogleFonts.interTextTheme(),
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
@@ -25,6 +27,7 @@ class MyApp extends ConsumerWidget {
           seedColor: const Color(0xFF004040),
           brightness: Brightness.dark,
         ),
+        textTheme: GoogleFonts.interTextTheme(ThemeData.dark().textTheme),
       ),
       home: const AuthWrapper(),
     );
