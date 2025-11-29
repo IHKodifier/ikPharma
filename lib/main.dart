@@ -14,11 +14,12 @@ void main() async {
 
   if (kDebugMode) {
     // Connect to Data Connect Emulator
-    IkPharmaConnector.instance.dataConnect.useDataConnectEmulator(
-      '127.0.0.1',
-      9399,
-    );
-    print('🔌 Connected to Data Connect Emulator on 127.0.0.1:9399');
+    String host = '127.0.0.1';
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      host = '10.0.2.2';
+    }
+    IkPharmaConnector.instance.dataConnect.useDataConnectEmulator(host, 9399);
+    print('🔌 Connected to Data Connect Emulator on $host:9399');
   }
 
   runApp(const ProviderScope(child: MyApp()));
