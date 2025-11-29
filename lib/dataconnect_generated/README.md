@@ -1159,6 +1159,14 @@ class CreateProductVariablesBuilder {
    _barcode.value = t;
    return this;
   }
+  CreateCustomerVariablesBuilder phone(String? t) {
+   _phone.value = t;
+   return this;
+  }
+  CreateCustomerVariablesBuilder dateOfBirth(DateTime? t) {
+   _dateOfBirth.value = t;
+   return this;
+  }
 
   ...
 }
@@ -1282,59 +1290,55 @@ ref.execute();
 ```
 
 
-### CreateSupplier
+### CreateInventoryLevel
 #### Required Arguments
 ```dart
+String productId = ...;
+String locationId = ...;
 String businessId = ...;
-String name = ...;
-SupplierType type = ...;
-String paymentTerms = ...;
-SupplierTier tier = ...;
-IkPharmaConnector.instance.createSupplier(
+int quantityOnHand = ...;
+int quantityAvailable = ...;
+double averageCost = ...;
+double totalValue = ...;
+IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
   businessId: businessId,
-  name: name,
-  type: type,
-  paymentTerms: paymentTerms,
-  tier: tier,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
 ).execute();
 ```
 
 #### Optional Arguments
-We return a builder for each query. For CreateSupplier, we created `CreateSupplierBuilder`. For queries and mutations with optional parameters, we return a builder class.
+We return a builder for each query. For CreateInventoryLevel, we created `CreateInventoryLevelBuilder`. For queries and mutations with optional parameters, we return a builder class.
 The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
 ```dart
-class CreateSupplierVariablesBuilder {
+class CreateInventoryLevelVariablesBuilder {
   ...
-   CreateSupplierVariablesBuilder contactPerson(String? t) {
-   _contactPerson.value = t;
-   return this;
-  }
-  CreateSupplierVariablesBuilder email(String? t) {
-   _email.value = t;
-   return this;
-  }
-  CreateSupplierVariablesBuilder phone(String? t) {
-   _phone.value = t;
+   CreateInventoryLevelVariablesBuilder batchId(String? t) {
+   _batchId.value = t;
    return this;
   }
 
   ...
 }
-IkPharmaConnector.instance.createSupplier(
+IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
   businessId: businessId,
-  name: name,
-  type: type,
-  paymentTerms: paymentTerms,
-  tier: tier,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
 )
-.contactPerson(contactPerson)
-.email(email)
-.phone(phone)
+.batchId(batchId)
 .execute();
 ```
 
 #### Return Type
-`execute()` returns a `OperationResult<CreateSupplierData, CreateSupplierVariables>`
+`execute()` returns a `OperationResult<CreateInventoryLevelData, CreateInventoryLevelVariables>`
 ```dart
 /// Result of an Operation Request (query/mutation).
 class OperationResult<Data, Variables> {
@@ -1344,14 +1348,16 @@ class OperationResult<Data, Variables> {
   FirebaseDataConnect dataConnect;
 }
 
-final result = await IkPharmaConnector.instance.createSupplier(
+final result = await IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
   businessId: businessId,
-  name: name,
-  type: type,
-  paymentTerms: paymentTerms,
-  tier: tier,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
 );
-CreateSupplierData data = result.data;
+CreateInventoryLevelData data = result.data;
 final ref = result.ref;
 ```
 
@@ -1359,18 +1365,22 @@ final ref = result.ref;
 Each builder returns an `execute` function, which is a helper function that creates a `Ref` object, and executes the underlying operation.
 An example of how to use the `Ref` object is shown below:
 ```dart
+String productId = ...;
+String locationId = ...;
 String businessId = ...;
-String name = ...;
-SupplierType type = ...;
-String paymentTerms = ...;
-SupplierTier tier = ...;
+int quantityOnHand = ...;
+int quantityAvailable = ...;
+double averageCost = ...;
+double totalValue = ...;
 
-final ref = IkPharmaConnector.instance.createSupplier(
+final ref = IkPharmaConnector.instance.createInventoryLevel(
+  productId: productId,
+  locationId: locationId,
   businessId: businessId,
-  name: name,
-  type: type,
-  paymentTerms: paymentTerms,
-  tier: tier,
+  quantityOnHand: quantityOnHand,
+  quantityAvailable: quantityAvailable,
+  averageCost: averageCost,
+  totalValue: totalValue,
 ).ref();
 ref.execute();
 ```
@@ -1721,7 +1731,37 @@ ref.execute();
 IkPharmaConnector.instance.deleteAllUsers().execute();
 ```
 
+#### Optional Arguments
+We return a builder for each query. For CreateBusiness, we created `CreateBusinessBuilder`. For queries and mutations with optional parameters, we return a builder class.
+The builder pattern allows Data Connect to distinguish between fields that haven't been set and fields that have been set to null. A field can be set by calling its respective setter method like below:
+```dart
+class CreateBusinessVariablesBuilder {
+  ...
+   CreateBusinessVariablesBuilder subscriptionEndDate(DateTime? t) {
+   _subscriptionEndDate.value = t;
+   return this;
+  }
+  CreateBusinessVariablesBuilder maxUsers(int? t) {
+   _maxUsers.value = t;
+   return this;
+  }
+  CreateBusinessVariablesBuilder maxLocations(int? t) {
+   _maxLocations.value = t;
+   return this;
+  }
 
+  ...
+}
+IkPharmaConnector.instance.createBusiness(
+  name: name,
+  tier: tier,
+  subscriptionStartDate: subscriptionStartDate,
+)
+.subscriptionEndDate(subscriptionEndDate)
+.maxUsers(maxUsers)
+.maxLocations(maxLocations)
+.execute();
+```
 
 #### Return Type
 `execute()` returns a `OperationResult<DeleteAllUsersData, void>`

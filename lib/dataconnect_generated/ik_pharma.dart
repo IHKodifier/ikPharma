@@ -14,7 +14,7 @@ part 'create_location.dart';
 
 part 'create_user.dart';
 
-part 'delete_all_businesses.dart';
+part 'create_product_batch.dart';
 
 part 'create_product_pricing.dart';
 
